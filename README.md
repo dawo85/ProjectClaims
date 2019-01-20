@@ -1,6 +1,6 @@
 # ProjectClaims
 
-#### How to ejecute application?
+#### How to ejecute the application?
 
 1. Open terminal.
 2. Situate in project path.
@@ -9,7 +9,7 @@
 4. Up docker with the command:
 `$: docker-compose up`
 
-#### How to ejecute test?
+#### How to ejecute tests?
 1. Open terminal.
 2. Entry in docker.
 `$: docker exec -ti projectclaims_django_1 /bin/bash`
