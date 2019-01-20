@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from claims.views import OccupiedInchView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('count_occupied_inch/', OccupiedInchView.as_view())
 ]
