@@ -1,12 +1,14 @@
 version: '3'
 
 services:
-  web:
+  django:
     build: 
       context: .
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /code/docker-entrypoint.sh
     volumes:
       - ./projectclaims:/code
     ports:
       - "8000:8000"
+    stdin_open: True
+    tty: True
