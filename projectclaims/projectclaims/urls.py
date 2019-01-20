@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from claims.views import OccupiedInchView
+from claims.views import OccupiedInchView, ListFullClaimIds
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('count_occupied_inch/', OccupiedInchView.as_view())
+    path('count_occupied_inch/', OccupiedInchView.as_view()),
+    path('list_full_claim_ids/', ListFullClaimIds.as_view())
 ]
