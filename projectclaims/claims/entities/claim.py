@@ -16,14 +16,8 @@ class Claim(models.Model):
 		max_width = self.x + self.width
 		max_height =  self.y + self.height
 		if max_width > self.__class__.max_inch or max_height > self.__class__.max_inch:
-			message = 'Incorrect coordinates and size. Panel max size %size x %size'
-			params = {
-				'size': str(self.__class__.max_inch)
-			} 
-			raise ValidationError(
-				_(message),
-				params=params
-			)
+			message = 'Incorrect coordinates and size. Panel max size {0} x {0}'.format(str(self.__class__.max_inch))
+			raise ValidationError(message)
 		super(Claim, self).full_clean(*args, **kwargs)
 
 	def get_area(self):
