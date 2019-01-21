@@ -9,7 +9,7 @@ class TestFillPanel(APITestCase):
 		self.claim_a = ClaimFactory(x=3, y=1, width=4, height=4)
 		self.claim_b = ClaimFactory(x=1, y=3, width=4, height=4)
 		self.claim_c = ClaimFactory(x=5, y=5, width=2, height=2)
-		self.response = np.zeros((1000, 1000))
+		self.response = np.zeros((7, 7))
 		self.response[1][3]=1
 		self.response[1][4]=1
 		self.response[1][5]=1

@@ -1,15 +1,22 @@
 import numpy as np
 from claims.entities.claim import Claim
+from django.db.models import F, Max
 
 class Panel():
 
-	width = Claim.max_inch
-	height = Claim.max_inch
-
 	def __init__(self):
-		self.map = np.zeros((self.__class__.width, self.__class__.height))
 		self.claims = Claim.objects.all()
+		self.height = self._get_height_max()
+		self.width = self._get_width_max()
+		self.map = np.zeros((self.height, self.width))
 
+	def _get_height_max(self):
+		height = Claim.objects.aggregate(max_height=Max(F('y') + F('height')))['max_height']
+		return height
+
+	def _get_width_max(self):
+		width = Claim.objects.aggregate(max_width=Max(F('x') + F('width')))['max_width']
+		return width
 
 	def _get_coordinates(self, claim):
 		x_initial = claim.y
@@ -19,7 +26,7 @@ class Panel():
 		return x_initial, y_initial, x_final, y_final
 
 	def put_claim(self, claim):
-		copy_map = np.zeros((self.__class__.width, self.__class__.height))
+		copy_map = np.zeros((self.height, self.width))
 		area = claim.get_area()
 		x_initial, y_initial, x_final, y_final = self._get_coordinates(claim)
 		copy_map[x_initial:y_initial, x_final:y_final] = area
